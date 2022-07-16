@@ -191,7 +191,7 @@ impl Painter {
     }
 
     /// Uploads all newly created and modified textures to the GPU.
-    /// Has to be called before entering the first render pass.  
+    /// Has to be called before entering the first render pass.
     /// If the return value is [`UpdateTexturesResult::Changed`],
     /// a texture will be changed in this frame and you need to wait for the last frame to finish
     /// before submitting the command buffer for this frame.
@@ -257,9 +257,7 @@ impl Painter {
     where
         P: CommandPoolBuilderAlloc,
     {
-        builder
-            .next_subpass(Inline)?
-            .bind_pipeline_graphics(self.pipeline.clone());
+        builder.bind_pipeline_graphics(self.pipeline.clone());
 
         let clipped_primitives: Vec<ClippedPrimitive> = egui_ctx.tessellate(clipped_shapes);
         let num_meshes = clipped_primitives.len();
